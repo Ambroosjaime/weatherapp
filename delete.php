@@ -6,7 +6,7 @@ include("dbcon.php");
 $city = $_GET['city'];
  
 //deleting the row from table
-$sql = "DELETE FROM users WHERE city=:city";
+$sql = "DELETE FROM Weather WHERE city=:city";
 $query = $dbcon->prepare($sql);
 $query->execute(array(':city' => $city));
  

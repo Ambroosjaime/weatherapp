@@ -4,7 +4,7 @@ include_once("dbcon.php");
 
 //fetching data in descending order (latest entry first)
 
-$result = $dbcon->query("SELECT * from users ORDER BY id DESC")
+$result = $dbcon->query("SELECT * from Weather ORDER BY city ASC")
 
 ?>
 
@@ -22,6 +22,7 @@ $result = $dbcon->query("SELECT * from users ORDER BY id DESC")
         <td>city</td>
         <td>high</td>
         <td>low</td>
+        <td>Update<td>
         
     </tr>
     <?php
@@ -30,7 +31,7 @@ $result = $dbcon->query("SELECT * from users ORDER BY id DESC")
         echo "<td>".$row['city']."</td>";
         echo "<td>".$row['high']."</td>";
         echo "<td>".$row['low']."</td>";
-        echo "<td><a href=\"edit.php?id=$row[id]\">Edit</a> | <a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+        echo "<td><a href=\"edit.php?city=$row[city]\">Edit</a> | <a href=\"delete.php?city=$row[city]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
     }
     ?>
     </table>

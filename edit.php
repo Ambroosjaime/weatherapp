@@ -3,7 +3,7 @@
 include_once("dbcon.php");
  
 if (isset($_POST['update'])) {
-    $city = $_POST['city'];
+    
     
     $city=$_POST['city'];
     $high=$_POST['high'];
@@ -24,8 +24,8 @@ if (isset($_POST['update'])) {
         }
     } else {
         //updating the table
-        $sql = "UPDATE users SET city=:city, high=:high, low=:low WHERE city=:city";
-        $query = $dbConn->prepare($sql);
+        $sql = "UPDATE Weather SET city=:city, high=:high, low=:low WHERE city=:city";
+        $query = $dbcon->prepare($sql);
                         
         $query->bindparam(':city', $city);
         $query->bindparam(':high', $high);
@@ -38,26 +38,25 @@ if (isset($_POST['update'])) {
         header("Location: index.php");
     }
 }
-    ?>
-    <?php
+  
     //getting id from url
 $city = $_GET['city'];
  
 //selecting data associated with this particular city
-$sql = "SELECT * FROM users WHERE city=:city";
+$sql = "SELECT * FROM Weather WHERE city=:city";
 $query = $dbcon->prepare($sql);
 $query->execute(array(':city' => $city));
  
 while($row = $query->fetch(PDO::FETCH_ASSOC))
 {
-    $city = $city['city'];
-    $high = $high['high'];
-    $low = $low['low'];
+    $city = $row['city'];
+    $high = $row['high'];
+    $low = $row['low'];
 }
 ?>
 <html>
 <head>    
-    <title>Edit Data</title>
+    <title>Edit Weather Data</title>
 </head>
  
 <body>
